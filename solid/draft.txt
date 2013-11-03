@@ -1,0 +1,134 @@
+Solid is a collection of 5 principles for helping design OOAs or libraries
+
+The 5 principles are 
+- Single R principle
+    Which means a class should only have one responsibility or job that it
+    should be preforming Which is kind of a fuzzy term in some cases.  For
+    example, when dealing with a form, is having the data set, and validating
+    during setting the data two or one responsibility.  In many cases, it is
+    just one responsibility.  ie: this form field can not be blank.  Sometimes
+    though the responsibility should be deligated, such as more complex
+    validation. ie: this form field can not be blank, and must match something
+    from the database.  ... and has to be a valid CC according to this 3rd
+    party system.
+
+    'this can't be blank' fits in one class, and this can't be blank +, it
+    should delegate some of this responsibility to another class.  There is a
+    lot of work in contacting 3rd party systems, or a database.
+
+    The purpose of SRP is that is easier to reuse small pieces and mix-n-match
+    them, sort of like a colection of legos, then it is to reuse big pieces,
+    like aranging whole cars.
+
+    Its easier to validate and test smaller pieces.  When working in a team
+    environment, it is nice to have smaller pieces to divy out parts of the
+    project while avoid stepping on toes.  Pair programing with five people,
+    gets a bit crowded for most offices I've seen.
+
+- Open / Closed principle
+    Open for extension, closed for modification
+
+    Classes should depend on abstractions, rather then on concretes.  The
+    abstractions be able to extended to have a specific implementation.  ie:
+    cache -> memcache
+    However they should not be open for modification themselves.  I need a good
+    example.  (Possibly from the form example above.)
+
+- Liskovs substitution principle
+    I guess we had to use his name to make a nice acronim.
+    It means that a class be replaced by a similar class, or a class of the
+    same type.  So if have a mysql database class that extends a common
+    database class, a postgress DB connection class, and a sqlite DB connection
+    class should all be valid in use as "a database connection".  Or with
+    caching, we Memcache, redis, in-memory-array.  This overlaps with the OCP.
+
+- Interface segrigation principle
+    An interface is a collection of methods that have a set number of
+    paramaters, and expected output from the methods.  An expected observable
+    behavior.  An interface should be a description of an abstraction.
+
+    An interface defines a 'type'.
+
+    Inject caching example here.
+
+    ISP is that the interfaces should be small and very focused in their purpose.
+    ie: the cahing interface should not have how to connect to the cache, or
+    setting the path of the file cache.
+
+    Classes can have additional methods behond the ones in the interface they
+    implement.  Consumers / users of the class should depend on the
+    abstraction, rather then the specific classes.
+
+- Dependancy Inversion principle
+    Classes should depend on abstractions, rather then concretes.  This
+    overlaps pieces of the other principles.  However this one focuses on
+    classes.  A common way of inverting the dependancy, is for a object to
+    recieve concrete objects that implement an abstraction, rather then
+    internally creating the concretes themselves.
+    So if I had a html template that had a caching backend.  The class for the
+    engine should not create its own file cache.  It should take a cache as a
+    paramater in the constructor or a setter.  So that it isn't tied
+    specifically to the file-cache.  Because there is not an easy way to swap
+    out code that creates objects, as it makes it depend on the concrete rather
+    then an abstraction.  Then the question becomes where do we put creation code?
+    In Symfony, ZF2, and various other projects, they have a DIC which has a
+    lot of the construction code.  Where it creates objects, and injects them
+    into other objects.  In the MVC pattern, the controller is a valid place
+    for putting constructor, as it is purpose is to gather the correct objects
+    and send the messages off for them to do their work.  In this version of
+    the MVC, the controller should have little code of its own, behond create
+    objects and deligating the work to them.
+
+    Factories are another place for putting object construction.  Basically a factory pattern.
+
+    * Check the book for a 3rd option.
+    * Add a diagram for methods of solving the DIP
+    * Possibly add jab against service locator, as this adds a dependancy on SL, vs DIC does not
+
+How this relates to the real-world.
+
+Doctrine2 style data objects.
+    The repository is a 'factory' with data from the DB
+    The resulting object does not know about the DB.
+    The resulting object knows itself, and little else.
+    It can not save itself.
+
+Active record model (ZF1 Table Row)
+    The table is a row factory, with data from the DB.
+    The resulting objects knows about the DB.
+    The resulting object can find any other data in the DB.
+    It can save itself.
+
+Unit testing a Doctrine2 Entity can be done with out a DB, or a mock DB.
+
+Unit testing an Active record, must include a DB object and a Table object.
+They could be mock versions, but some sort of DB and Table object most be
+created to perform tests.
+
+When unit testing an object that uses the SL pattern, we must create a SL or
+mock SL, in addition to the objects it will locate.
+
+When unit testing an object that uses the DIC pattern, we must create the
+objects it needs, and inject them into the object we are testing.
+
+With smaller interfaces and objects, we can use 'bigger' pieces in our classes
+and assume that the other system is working in many cases.
+
+ie: a template engine with a caching system can ignore details about how a
+cache works.  The interface says I can put something in this way, and take it
+out that way.  How you do that is not my concern here.  I get to assume in most
+cases "it just does", and I can get back to coding.
+
+List in the intro about the selling points of solid.
+Re-order the letters to allow talking about some of them later, with borrowing
+some of the overlap they cover better.
+
+One possible single behavior is to blend smaller behaviors.  A caching weather service.  a) Weather, b) Cache, c) comosite.
+
+
+
+
+
+
+
+
