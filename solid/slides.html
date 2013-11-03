@@ -367,6 +367,13 @@ $service-&gt;setCache($filecache);</code></pre>
     $(function() {
         $.deck('.slide');
     });
+    $('body').click(function(){
+        $.deck('next');
+    });
+    $('body').bind("contextmenu",function(){
+        $.deck('prev');
+       return false;
+    }); 
 </script>
 </body>
 </html>
