@@ -111,7 +111,7 @@
         <li class="slide">Honor the Single Responsibility Principle</li>
         <li class="slide">Narrow collection of methods to allow performing a responsibility</li>
     </ul>
-    <pre class="slide"><code>interface cache {
+    <pre class="slide"><code>interface MyCache {
     public function get($key);
     public function set($key, $value);
     public function has($key);
@@ -153,6 +153,172 @@
     <pre><code>$service-&gt;setCache($memcache);
 $service-&gt;setCache($filecache);</code></pre>
 </section>
+
+<section class="slide">
+    <h2>O - Open / Closed Principle</h2>
+    <blockquote class="slide">
+        Objects should be open to extension, but closed to modification
+    </blockquote>
+</section>
+
+<section class="slide">
+    <h2>O - Open / Closed Principle</h2>
+    <h3>Extension without Modification</h3>
+    <ul>
+        <li class="slide">
+            Polymorphic
+            <ul>
+                <li class="slide">Same interface</li>
+                <li class="slide">Different implementation</li>
+            </ul>
+        </li>
+        <li class="slide">Like Liskov's Substitution Principle</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>O - Open / Closed Principle</h2>
+    <pre><code>class MyFileCache implements MyCache {
+    public function __construct($path) { ... }
+    public function gc() { ... }
+
+    // and the MyCache methods
+    public function get($key) { ... }
+    public function set($key, $value) { ... }
+    public function has($key) { ... }
+    public function delete($key) { ... }
+}</code></pre>
+</section>
+
+<section class="slide">
+    <h2>D - Dependency Inversion Principle</h2>
+    <blockquote class="slide">
+        Applications should depend upon abstractions, not concrete instances of
+        an object
+    </blockquote>
+</section>
+
+<section class="slide">
+    <h2>D - Dependency Inversion Principle</h2>
+    <h3>Abstractions</h3>
+    <ul>
+        <li class="slide">An abstract class</li>
+        <li class="slide">An interface</li>
+        <li class="slide">A 'type' of object</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>D - Dependency Inversion Principle</h2>
+    <h3>Inversion</h3>
+    <ul>
+        <li class="slide">
+            A reversal of the normal order
+        </li>
+        <li class="slide">
+            In the context of SOLID, objects should depend on abstractions
+        </li>
+    </ul>
+
+    <h3 class="slide">Injection</h3>
+    <ul>
+        <li class="slide">
+            The act of injecting or throwing in forcible
+        </li>
+        <li class="slide">
+            Not actually part of SOLID
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>D - Dependency Inversion Principle</h2>
+    <pre><code>class MyLoggingCache implements MyCache {
+    public function __construct(
+        MyCache $realCache
+    ) {
+        $this-&gt;cache = $realCache;
+        // UGLY: Depends on a concrete logger
+        $this-&gt;logger = new MySyslogLogger();
+    }
+    ...
+}</code></pre>
+</section>
+
+<section class="slide">
+    <h2>D - Dependency Inversion Principle</h2>
+    <pre><code>class MyLoggingCache implements MyCache {
+    public function __construct(
+        MyCache $realCache, MyLogger $logger
+    ) {
+        $this-&gt;cache = $realCache;
+        // The logger is injected in
+        $this-&gt;logger = $logger;
+    }
+    ...
+}</code></pre>
+</section>
+
+<section class="slide">
+    <h2>D - Dependency Inversion Principle</h2>
+    <h3>with Single Responsibility Principle</h3>
+    <ul>
+        <li class="slide">
+            Object creation depends on concrete classes
+        </li>
+        <li class="slide">
+            Object creation is a job or responsibility.  Therefore things that
+            create objects shouldn't do much else.
+        </li>
+        <li class="slide">
+            Object creation should be for factories or for controllers in MVC
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>D - Dependency Inversion Principle</h2>
+    <h3>Service Locators (SL)</h3>
+    <ul>
+        <li class="slide">
+            Using an SL pattern means we depend on a locator
+        </li>
+    </ul>
+
+    <h3 class="slide">Dependency Injection Containers (DIC)</h3>
+    <ul>
+        <li class="slide">
+            Using a DIC pattern means the container must tell an object everything it may need
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>D - Dependency Inversion Principle</h2>
+    <h3>SL vs DIC</h3>
+    <pre><code>class MyClass {
+    public function __construct(
+        ServiceContainer $cont
+    ) {
+        $this-&gt;cache  = $cont-&gt;get('cache');
+        $this-&gt;logger = $cont-&gt;get('logger');
+    }
+}</code></pre>
+</section>
+
+<section class="slide">
+    <h2>D - Dependency Inversion Principle</h2>
+    <h3>SL vs DIC</h3>
+    <pre><code>class MyClass {
+    public function __construct(
+        MyCache $realCache, MyLogger $logger
+    ) {
+        $this-&gt;cache  = $realCache;
+        $this-&gt;logger = $logger;
+    }
+}</code></pre>
+</section>
+
 
 <!-- End slides. -->
 
