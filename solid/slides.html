@@ -101,14 +101,14 @@
     <h3>Interface</h3>
     <ul>
         <li class="slide">An interface is a collection of methods</li>
-        <li class="slide">An interface is a promise to fulfil</li>
+        <li class="slide">An interface is a promise to fulfill</li>
     </ul>
 </section>
 
 <section class="slide">
     <h2>I - Interface Segregation Principle</h2>
     <ul>
-        <li class="slide">Honor the Single Responsibility Principle</li>
+        <li>Honor the Single Responsibility Principle</li>
         <li class="slide">Narrow collection of methods to allow performing a responsibility</li>
     </ul>
     <pre class="slide"><code>interface MyCache {
@@ -141,9 +141,12 @@
     <h2>L - Liskov's Substitution Principle</h2>
     <h3>Interchange</h3>
     <ul>
-        <li class="slide">An object's methods can be called in the same way as another of its type</li>
-        <li class="slide">An object accepts the same types of parameters</li>
-        <li class="slide">An object returns the same types of objects</li>
+        <li class="slide">An object's methods can be called in the same way as another of its type
+            <ul>
+                <li class="slide">An object's methods accepts the same types of parameters</li>
+                <li class="slide">An object's methods returns the same types of values</li>
+            </ul>
+        </li>
     </ul>
 </section>
 
@@ -223,7 +226,7 @@ $service-&gt;setCache($filecache);</code></pre>
     <h3 class="slide">Injection</h3>
     <ul>
         <li class="slide">
-            The act of injecting or throwing in forcible
+            The act of injecting or throwing in forcibly
         </li>
         <li class="slide">
             Not actually part of SOLID
