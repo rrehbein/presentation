@@ -37,10 +37,26 @@
 </section>
 
 <section class="slide">
+    <h2>Today's Speaker</h2>
+    <h3>Ray Rehbein</h3>
+    <ul>
+        <li class="slide">
+            Lead Developer for Discount Office Items
+            <ul>
+                <li class="slide">Buy office supplies!</li>
+            </ul>
+        </li>
+        <li class="slide">Father</li>
+        <li class="slide">Cook</li>
+    </ul>
+</section>
+
+<section class="slide">
     <h2>SOLID</h2>
+    <h3>What is it?</h3>
     <div class="slide">
-        A collection of complementary principles for helping to design Object
-        Oriented Architectures or Libraries
+        A collection of complementary principles for helping to design for
+        Object Oriented Architectures or Libraries
     </div>
     <ul>
         <li class="slide">Single Responsibility Principle</li>
@@ -48,6 +64,25 @@
         <li class="slide">Liskov's Substitution Principle</li>
         <li class="slide">Interface Segregation Principle</li>
         <li class="slide">Dependency Inversion Principle</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>SOLID</h2>
+    <h3>Why bother?</h3>
+    <ul>
+        <li class="slide">
+            Object Oriented is what most of the frameworks are using
+            <ul class="slide">
+                <li>Laravel</li>
+                <li>Symfony</li>
+                <li>Zend Framework</li>
+                <li>etc...</li>
+            </ul>
+        </li>
+        <li class="slide">Reusable pieces</li>
+        <li class="slide">Simpler pieces</li>
+        <li class="slide">Testability</li>
     </ul>
 </section>
 
@@ -63,7 +98,7 @@
     <div>
         A class should only have one "job" or "responsibility"
         <ul class="slide">
-            <li>A reason for changing</li>
+            <li>A reason for changing - Robert C. Martin</li>
         </ul>
     </div>
     <div class="slide">
@@ -77,7 +112,7 @@
 <section class="slide">
     <h2>S - Single Responsibility Principle</h2>
     <div>
-        A class should only have one "responsibility" or "job"
+        A class should only have one "job" or "responsibility"
         <ul>
             <li>A reason for changing</li>
         </ul>
@@ -86,6 +121,18 @@
         Don't go OCD on it.
     </div>
     <pre class="slide"><code>$response = $service-&gt;process($request);</code></pre>
+</section>
+
+<section class="slide">
+    <h2>S - Single Responsibility Principle</h2>
+    <h3>Some responsibilities</h3>
+    <ul>
+        <li class="slide">Data object</li>
+        <li class="slide">Data storage</li>
+        <li class="slide">Caching</li>
+        <li class="slide">Logging</li>
+        <li class="slide">Creating</li>
+        <li class="slide">Composing / Blending</li>
 </section>
 
 <section class="slide">
@@ -120,44 +167,6 @@
 </section>
 
 <section class="slide">
-    <h2>L - Liskov's Substitution Principle</h2>
-    <blockquote class="slide">
-        Objects of the same type should be
-        interchangeable
-    </blockquote>
-</section>
-
-<section class="slide">
-    <h2>L - Liskov's Substitution Principle</h2>
-    <h3>Type</h3>
-    <ul>
-        <li class="slide">An interface can be used to define a 'type' of object</li>
-        <li class="slide">A class can be used to define a 'type' of object</li>
-        <li class="slide">A parent class can be used to define a 'type' of object</li>
-    </ul>
-</section>
-
-<section class="slide">
-    <h2>L - Liskov's Substitution Principle</h2>
-    <h3>Interchange</h3>
-    <ul>
-        <li class="slide">An object's methods can be called in the same way as another of its type
-            <ul>
-                <li class="slide">An object's methods accepts the same types of parameters</li>
-                <li class="slide">An object's methods returns the same types of values</li>
-            </ul>
-        </li>
-    </ul>
-</section>
-
-<section class="slide">
-    <h2>L - Liskov's Substitution Principle</h2>
-    <div>Objects of the same type should be interchangeable</div>
-    <pre><code>$service-&gt;setCache($memcache);
-$service-&gt;setCache($filecache);</code></pre>
-</section>
-
-<section class="slide">
     <h2>O - Open / Closed Principle</h2>
     <blockquote class="slide">
         Objects should be open to extension, but closed to modification
@@ -170,12 +179,11 @@ $service-&gt;setCache($filecache);</code></pre>
     <ul>
         <li class="slide">
             Polymorphic
-            <ul>
-                <li class="slide">Same interface</li>
-                <li class="slide">Different implementation</li>
+            <ul class="slide">
+                <li>Same interface</li>
+                <li>Different implementation</li>
             </ul>
         </li>
-        <li class="slide">Like Liskov's Substitution Principle</li>
     </ul>
 </section>
 
@@ -191,6 +199,51 @@ $service-&gt;setCache($filecache);</code></pre>
     public function has($key) { ... }
     public function delete($key) { ... }
 }</code></pre>
+</section>
+
+<section class="slide">
+    <h2>L - Liskov's Substitution Principle</h2>
+    <blockquote class="slide">
+        Objects of the same type should be
+        interchangeable
+    </blockquote>
+</section>
+
+<section class="slide">
+    <h2>L - Liskov's Substitution Principle</h2>
+    <h3>Type</h3>
+    <ul>
+        <li class="slide">Class</li>
+        <li class="slide">Parent class</li>
+        <li class="slide">Interface</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>L - Liskov's Substitution Principle</h2>
+    <h3>Interchangeable</h3>
+    <ul>
+        <li class="slide">An object's methods can be called in the same way as another of its type
+            <ul>
+                <li class="slide">Accepts the same types of parameters</li>
+                <li class="slide">Returns the same types of values</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>L - Liskov's Substitution Principle</h2>
+    <div>Objects of the same type should be interchangeable</div>
+    <pre><code>$service-&gt;setCache($memCache);
+$service-&gt;setCache($fileCache);</code></pre>
+</section>
+
+<section class="slide">
+    <h2>L - Liskov's Substitution Principle</h2>
+    <div>Objects of the same type should be interchangeable</div>
+    <pre><code>$service-&gt;setRepository($userRepository);
+$service-&gt;setRepository($productRepository);</code></pre>
 </section>
 
 <section class="slide">
@@ -242,7 +295,7 @@ $service-&gt;setCache($filecache);</code></pre>
     ) {
         $this-&gt;cache = $realCache;
         // UGLY: Depends on a concrete logger
-        $this-&gt;logger = new MySyslogLogger();
+        $this-&gt;logger = new MyFileLogger();
     }
     ...
 }</code></pre>
@@ -274,7 +327,12 @@ $service-&gt;setCache($filecache);</code></pre>
             create objects shouldn't do much else.
         </li>
         <li class="slide">
-            Object creation should be for factories or for controllers in MVC
+            Object creation should be for:
+            <ul>
+                <li>factories</li>
+                <li>controllers in MVC</li>
+                <li>service containers</li>
+            </ul>
         </li>
     </ul>
 </section>
@@ -287,19 +345,7 @@ $service-&gt;setCache($filecache);</code></pre>
             Using an SL pattern means we depend on a locator
         </li>
     </ul>
-
-    <h3 class="slide">Dependency Injection Containers (DIC)</h3>
-    <ul>
-        <li class="slide">
-            Using a DIC pattern means the container must tell an object everything it may need
-        </li>
-    </ul>
-</section>
-
-<section class="slide">
-    <h2>D - Dependency Inversion Principle</h2>
-    <h3>SL vs DIC</h3>
-    <pre><code>class MyClass {
+    <pre class="slide"><code>class MyClass {
     public function __construct(
         ServiceContainer $cont
     ) {
@@ -311,8 +357,13 @@ $service-&gt;setCache($filecache);</code></pre>
 
 <section class="slide">
     <h2>D - Dependency Inversion Principle</h2>
-    <h3>SL vs DIC</h3>
-    <pre><code>class MyClass {
+    <h3>Dependency Injection Container (DIC)</h3>
+    <ul>
+        <li class="slide">
+            Using a DIC pattern means the container must tell an object everything it may need
+        </li>
+    </ul>
+    <pre class="slide"><code>class MyClass {
     public function __construct(
         MyCache $realCache, MyLogger $logger
     ) {
@@ -322,6 +373,56 @@ $service-&gt;setCache($filecache);</code></pre>
 }</code></pre>
 </section>
 
+<section class="slide">
+    <h2>D - Dependency Inversion Principle</h2>
+    <h3>SL vs DIC</h3>
+    <ul>
+        <li class="slide">
+            Good things about SL over DIC
+            <ul>
+                <li class="slide">Lazy creation</li>
+            </ul>
+        </li>
+        <li class="slide">
+            Bad things about SL over DIC
+            <ul>
+                <li class="slide">Unit Testing needs one more mock</li>
+                <li class="slide">Multiple instances of a class means multiple SLs</li>
+            </ul>
+        </li>
+        <li class="slide">
+            Good things about DIC over SL
+            <ul>
+                <li class="slide">Simpler unit tests</li>
+                <li class="slide">Allows alternate instances of a class</li>
+            </ul>
+        </li>
+        <li class="slide">
+            Bad things about DIC over SL
+            <ul>
+                <li class="slide">Object creation</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Where to go from here</h2>
+    <ul>
+        <li class="slide">Object Calisthenics</li>
+        <li class="slide">Design Patterns</li>
+        <li class="slide">Unit Testing Patterns</li>
+        <li class="slide">Refactoring</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h1>Questions?</h1>
+</section>
+
+<section class="slide">
+    <h1>Thank you</h1>
+</section>
 
 <!-- End slides. -->
 

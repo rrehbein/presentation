@@ -1,0 +1,165 @@
+Solid
+
+Today's Speaker
+
+- Lead Dev
+    - buy
+- Father
+- Cook
+
+What it is
+    - A collection of complementary principles for helping to design for
+      Object Oriented Architectures or Libraries
+
+- Single Responsibility Principle
+- Open / Closed Principle
+- Liskov's Substitution Principle
+- Interface Segregation Principle
+- Dependency Inversion Principle
+
+Why bother
+
+- Most frameworks are OO
+    - Laravel, Symfony, Zend, CodeIgnitor, ezC, CakePHP
+- Reusable
+- Simpler
+- Testable
+
+S - Single Responsibility Principle
+    - Classes and object should have only one job
+
+S - Single Responsibility Principle
+A class should only have one "job" or "responsibility"
+    - A reason for changing - Robert C. Martin
+- Cache ! encode
+- Form Valid ! Validate
+
+- !OCD
+- Request / Response
+
+Some responsibilities
+    - Data object
+    - Data storage
+    - Caching
+    - Logging
+    - Creating
+    - Composing / Blending
+    = File IO
+    = Remote connection
+    = Message encoding / decoding
+
+I - Interface Segregation Principle
+    Small, compact interfaces are preferable to
+    large, 'God' objects
+
+Interface
+    - An interface is a collection of methods
+    - An interface is a promise to fulfill
+
+- Honor the Single Responsibility Principle
+- Narrow collection of methods to allow performing a responsibility
+- interface MyCache { }
+
+O - Open / Closed Principle
+    - Objects should be open to extension, but closed to modification
+
+Extension without Modification
+    - Polymorphic
+        - Same interface, Different implementation
+
+class MyFileCache implements MyCache { }
+    = MyMemCacheCache - !gc
+    = Different caches prioritization (TTL, Expire Date, Priority vs Fill)
+
+L - Liskov's Substitution Principle
+    - Objects of the same type should be interchangeable
+
+Type
+    - Class
+    - Parent class
+    - Interface
+
+Interchangeable
+    - An object's methods can be called in the same way as another of its type
+        - Accepts the same types of parameters
+        - Returns the same types of values
+
+Objects of the same type should be interchangeable
+    $service->setCache($memCache);
+    $service->setCache($fileCache);
+
+Objects of the same type should be interchangeable
+    $service->setRepository($userRepository);
+    $service->setRepository($productRepository);
+    = type($user) != type($product)
+
+D - Dependency Inversion Principle
+    - Applications should depend upon abstractions, not concrete instances of
+      an object
+
+Abstractions
+    - An abstract class
+    - An interface
+    - A 'type' of object
+
+Inversion
+    - A reversal of the normal order
+    - In the context of SOLID, objects should depend on abstractions
+
+Injection
+    - The act of injecting or throwing in forcibly
+    - Not actually part of SOLID
+
+class MyLoggingCache implements MyCache {
+    with a new FileLogger
+}
+
+class MyLoggingCache implements MyCache {
+    with an injected logger
+}
+
+DIP with Single Responsibility Principle
+    - Object creation depends on concrete classes
+    - Object creation is a job or responsibility.  Therefore things that
+      create objects shouldn't do much else.
+    - Object creation should be for:
+        factories
+        controllers in MVC
+        service containers
+
+- Service Locators (SL)
+    - Using an SL pattern means we depend on a locator
+    - class MyClass {
+        // using a ServiceContainer
+    }
+
+
+- Dependency Injection Containers (DIC)
+    - Using a DIC pattern means the container must tell an object everything it may need
+    - class MyClass {
+        // simple setters
+    }
+
+- SL vs DIC
+    - SL Good
+        - Lazy creation
+            = Event Dispatcher
+    - SL Bad
+        - Unit testing one more mock
+        - Multiple instances means multiple SL
+    - DIC Good
+        - Simpler unit tests, one less mock vs SL
+        - Alternate instances ie: LoggingCache
+    - DIC Bad
+        - Complex object creation is heavy
+            = Likely a sign of a 'God' object that needs to be broken down
+
+Where to go from here
+    - Object Calisthenics
+    - Design Patterns
+    - Unit Testing Patterns
+    - Refactoring Patterns and Recipes
+
+Questions
+
+Thank you
