@@ -119,9 +119,9 @@ class MyLoggingCache implements MyCache {
 }
 
 DIP with Single Responsibility Principle
+    - Object creation is a job or responsibility
     - Object creation depends on concrete classes
-    - Object creation is a job or responsibility.  Therefore things that
-      create objects shouldn't do much else.
+    - Therefore things that create objects shouldn't do much else.
     - Object creation should be for:
         factories
         controllers in MVC
@@ -153,6 +153,13 @@ DIP with Single Responsibility Principle
     - DIC Bad
         - Complex object creation is heavy
             = Likely a sign of a 'God' object that needs to be broken down
+
+Review
+- Single Responsibility Principle
+- Open / Closed Principle
+- Liskov's Substitution Principle
+- Interface Segregation Principle
+- Dependency Inversion Principle
 
 Where to go from here
     - Object Calisthenics
