@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=1024, user-scalable=no">
 
-    <title>SOLID Through the Blender</title>
+    <title>SOLID I Sold</title>
 
     <!-- Required stylesheet -->
     <link rel="stylesheet" href="../js/deck/core/deck.core.css">
@@ -87,6 +87,72 @@
 </section>
 
 <section class="slide">
+    <h2>SOLID</h2>
+    <div>
+        A collection of complementary principles for helping to design for
+        Object Oriented Architectures or Libraries
+    </div>
+    <ul>
+        <li style="visibility: hidden;"></li>
+        <li>Single Responsibility Principle</li>
+        <li>Open / Closed Principle</li>
+        <li>Liskov's Substitution Principle</li>
+        <li>Interface Segregation Principle</li>
+        <li>Dependency Inversion Principle</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>ISOLD</h2>
+    <div>
+        A collection of complementary principles for helping to design for
+        Object Oriented Architectures or Libraries
+    </div>
+    <ul>
+        <li>Interface Segregation Principle</li>
+        <li>Single Responsibility Principle</li>
+        <li>Open / Closed Principle</li>
+        <li>Liskov's Substitution Principle</li>
+        <li style="visibility: hidden;"></li>
+        <li>Dependency Inversion Principle</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>I - Interface Segregation Principle</h2>
+    <blockquote class="slide">
+        Small, compact interfaces are preferable to
+        large, 'God' objects
+    </blockquote>
+</section>
+
+<section class="slide">
+    <h2>I - Interface Segregation Principle</h2>
+    <h3>Interface</h3>
+    <ul>
+        <li class="slide">An interface is a collection of methods</li>
+        <li class="slide">An interface is a promise to fulfill</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>I - Interface Segregation Principle</h2>
+    <ul>
+        <li>Narrow collection of methods to allow performing a responsibility</li>
+    </ul>
+    <pre class="slide"><code>interface MyCache {
+    public function get($key);
+    public function set($key, $value);
+    public function has($key);
+    public function delete($key);
+}</code></pre>
+</section>
+
+<section class="slide">
+    <h1>Questions?</h1>
+</section>
+
+<section class="slide">
     <h2>S - Single Responsibility Principle</h2>
     <blockquote class="slide">
         Classes and objects should have only one job
@@ -98,7 +164,7 @@
     <div>
         A class should only have one "job" or "responsibility"
         <ul class="slide">
-            <li>A reason for changing - Robert C. Martin</li>
+            <li>A reason for changing</li>
         </ul>
     </div>
     <div class="slide">
@@ -136,34 +202,7 @@
 </section>
 
 <section class="slide">
-    <h2>I - Interface Segregation Principle</h2>
-    <blockquote class="slide">
-        Small, compact interfaces are preferable to
-        large, 'God' objects
-    </blockquote>
-</section>
-
-<section class="slide">
-    <h2>I - Interface Segregation Principle</h2>
-    <h3>Interface</h3>
-    <ul>
-        <li class="slide">An interface is a collection of methods</li>
-        <li class="slide">An interface is a promise to fulfill</li>
-    </ul>
-</section>
-
-<section class="slide">
-    <h2>I - Interface Segregation Principle</h2>
-    <ul>
-        <li>Honor the Single Responsibility Principle</li>
-        <li class="slide">Narrow collection of methods to allow performing a responsibility</li>
-    </ul>
-    <pre class="slide"><code>interface MyCache {
-    public function get($key);
-    public function set($key, $value);
-    public function has($key);
-    public function delete($key);
-}</code></pre>
+    <h1>Questions?</h1>
 </section>
 
 <section class="slide">
@@ -191,7 +230,7 @@
     <h2>O - Open / Closed Principle</h2>
     <pre><code>class MyFileCache implements MyCache {
     public function __construct($path) { ... }
-    public function gc() { ... }
+    public function garbargeCollection() { ... }
 
     // and the MyCache methods
     public function get($key) { ... }
@@ -199,6 +238,10 @@
     public function has($key) { ... }
     public function delete($key) { ... }
 }</code></pre>
+</section>
+
+<section class="slide">
+    <h1>Questions?</h1>
 </section>
 
 <section class="slide">
@@ -244,6 +287,11 @@ $service-&gt;setCache($fileCache);</code></pre>
     <div>Objects of the same type should be interchangeable</div>
     <pre><code>$service-&gt;setRepository($userRepository);
 $service-&gt;setRepository($productRepository);</code></pre>
+    <div class="slide">Not following Liskov's</div>
+</section>
+
+<section class="slide">
+    <h1>Questions?</h1>
 </section>
 
 <section class="slide">
@@ -297,7 +345,6 @@ $service-&gt;setRepository($productRepository);</code></pre>
         // UGLY: Depends on a concrete logger
         $this-&gt;logger = new MyFileLogger();
     }
-    ...
 }</code></pre>
 </section>
 
@@ -311,7 +358,6 @@ $service-&gt;setRepository($productRepository);</code></pre>
         // The logger is injected in
         $this-&gt;logger = $logger;
     }
-    ...
 }</code></pre>
 </section>
 
@@ -324,9 +370,6 @@ $service-&gt;setRepository($productRepository);</code></pre>
         </li>
         <li class="slide">
             Object creation depends on concrete classes
-        </li>
-        <li class="slide">
-            Therefore things that create objects shouldn't do much else.
         </li>
         <li class="slide">
             Object creation should be for:
@@ -344,17 +387,16 @@ $service-&gt;setRepository($productRepository);</code></pre>
     <h3>Service Locators (SL)</h3>
     <ul>
         <li class="slide">
-            Using an SL pattern means we depend on a locator
+            We depend on a locator
         </li>
     </ul>
-    <pre class="slide"><code>class MyClass {
+    <pre class="slide"><code>class MyLoggingCache implements MyCache {
     public function __construct(
         ServiceContainer $cont
     ) {
         $this-&gt;cache  = $cont-&gt;get('cache');
         $this-&gt;logger = $cont-&gt;get('logger');
-    }
-}</code></pre>
+    }</code></pre>
 </section>
 
 <section class="slide">
@@ -362,22 +404,21 @@ $service-&gt;setRepository($productRepository);</code></pre>
     <h3>Dependency Injection Container (DIC)</h3>
     <ul>
         <li class="slide">
-            Using a DIC pattern means the container must tell an object everything it may need
+            The container must tell an object everything it may need
         </li>
     </ul>
-    <pre class="slide"><code>class MyClass {
+    <pre class="slide"><code>class MyLoggingCache implements MyCache {
     public function __construct(
         MyCache $realCache, MyLogger $logger
     ) {
         $this-&gt;cache  = $realCache;
         $this-&gt;logger = $logger;
-    }
-}</code></pre>
+    }</code></pre>
 </section>
 
 <section class="slide">
     <h2>D - Dependency Inversion Principle</h2>
-    <h3>SL vs DIC</h3>
+    <h3>Service Locators vs DIC</h3>
     <ul>
         <li class="slide">
             Good things about SL over DIC
@@ -392,6 +433,13 @@ $service-&gt;setRepository($productRepository);</code></pre>
                 <li class="slide">Multiple instances of a class means multiple SLs</li>
             </ul>
         </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>D - Dependency Inversion Principle</h2>
+    <h3>SL vs Dependency Injection Containers</h3>
+    <ul>
         <li class="slide">
             Good things about DIC over SL
             <ul>
@@ -409,13 +457,39 @@ $service-&gt;setRepository($productRepository);</code></pre>
 </section>
 
 <section class="slide">
-    <h2>SOLID</h2>
+    <h2>ISOLD</h2>
     <ul>
+        <li class="slide">Interface Segregation Principle</li>
         <li class="slide">Single Responsibility Principle</li>
         <li class="slide">Open / Closed Principle</li>
         <li class="slide">Liskov's Substitution Principle</li>
-        <li class="slide">Interface Segregation Principle</li>
+        <li style="visibility: hidden;"></li>
         <li class="slide">Dependency Inversion Principle</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>ISOLD</h2>
+    <ul>
+        <li>Interface Segregation Principle</li>
+        <li>Single Responsibility Principle</li>
+        <li>Open / Closed Principle</li>
+        <li>Liskov's Substitution Principle</li>
+        <li style="visibility: hidden;"></li>
+        <li>Dependency Inversion Principle</li>
+    </ul>
+</section>
+
+
+<section class="slide">
+    <h2>SOLID</h2>
+    <ul>
+        <li style="visibility: hidden;"></li>
+        <li>Single Responsibility Principle</li>
+        <li>Open / Closed Principle</li>
+        <li>Liskov's Substitution Principle</li>
+        <li>Interface Segregation Principle</li>
+        <li>Dependency Inversion Principle</li>
     </ul>
 </section>
 
