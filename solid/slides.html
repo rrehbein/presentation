@@ -121,7 +121,7 @@
 </section>
 
 <section class="slide">
-    <h2>I - Interface Segregation Principle</h2>
+    <h2>I - Interface Segregation</h2>
     <blockquote class="slide">
         Small, compact interfaces are preferable to
         large, 'God' objects
@@ -129,7 +129,7 @@
 </section>
 
 <section class="slide">
-    <h2>I - Interface Segregation Principle</h2>
+    <h2>I - Interface Segregation</h2>
     <h3>Interface</h3>
     <ul>
         <li class="slide">An interface is a collection of methods</li>
@@ -138,11 +138,11 @@
 </section>
 
 <section class="slide">
-    <h2>I - Interface Segregation Principle</h2>
+    <h2>I - Interface Segregation</h2>
     <ul>
         <li>Narrow collection of methods to allow performing a responsibility</li>
     </ul>
-    <pre class="slide"><code>interface PSR\CacheInterface {
+    <pre class="slide"><code>interface PSR\Cache {
     public function get($key);
     public function set($key, $value);
     public function remove($key);
@@ -154,14 +154,14 @@
 </section>
 
 <section class="slide">
-    <h2>S - Single Responsibility Principle</h2>
+    <h2>S - Single Responsibility</h2>
     <blockquote class="slide">
         Classes and objects should have only one job
     </blockquote>
 </section>
 
 <section class="slide">
-    <h2>S - Single Responsibility Principle</h2>
+    <h2>S - Single Responsibility</h2>
     <div>
         A class should only have one "job" or "responsibility"
         <ul class="slide">
@@ -177,21 +177,21 @@
 </section>
 
 <section class="slide">
-    <h2>S - Single Responsibility Principle</h2>
+    <h2>S - Single Responsibility</h2>
     <div>
         A class should only have one "job" or "responsibility"
         <ul>
             <li>A reason for changing</li>
         </ul>
     </div>
-    <div class="slide">
+    <div>
         Don't go OCD on it.
     </div>
-    <pre class="slide"><code>$response = $service-&gt;process($request);</code></pre>
+    <pre><code>$response = $service-&gt;process($request);</code></pre>
 </section>
 
 <section class="slide">
-    <h2>S - Single Responsibility Principle</h2>
+    <h2>S - Single Responsibility</h2>
     <h3>Some responsibilities</h3>
     <ul>
         <li class="slide">Data object</li>
@@ -207,14 +207,14 @@
 </section>
 
 <section class="slide">
-    <h2>O - Open / Closed Principle</h2>
+    <h2>O - Open / Closed</h2>
     <blockquote class="slide">
         Objects should be open to extension, but closed to modification
     </blockquote>
 </section>
 
 <section class="slide">
-    <h2>O - Open / Closed Principle</h2>
+    <h2>O - Open / Closed</h2>
     <h3>Meyer's Open / Closed Principle</h3>
     <ul>
         <li class="slide">
@@ -228,7 +228,7 @@
 </section>
 
 <section class="slide">
-    <h2>O - Open / Closed Principle</h2>
+    <h2>O - Open / Closed</h2>
     <h3>Polymorphic Open / Closed Principle</h3>
     <ul>
         <li class="slide">"abstracted interfaces" - During 1990s</li>
@@ -238,12 +238,12 @@
 </section>
 
 <section class="slide">
-    <h2>O - Open / Closed Principle</h2>
-    <pre><code>class MyFileCache implements PSR\CacheInterface {
+    <h2>O - Open / Closed</h2>
+    <pre><code>class MyFileCache implements PSR\Cache {
     public function __construct($path) { ... }
     public function garbargeCollection() { ... }
 
-    // and the CacheInterface methods
+    // and the Cache methods
     public function get($key) { ... }
     public function set($key, $value) { ... }
     public function remove($key) { ... }
@@ -255,7 +255,7 @@
 </section>
 
 <section class="slide">
-    <h2>L - Liskov's Substitution Principle</h2>
+    <h2>L - Liskov's Substitution</h2>
     <blockquote class="slide">
         Objects of the same type should be
         interchangeable
@@ -263,7 +263,7 @@
 </section>
 
 <section class="slide">
-    <h2>L - Liskov's Substitution Principle</h2>
+    <h2>L - Liskov's Substitution</h2>
     <h3>Type</h3>
     <ul>
         <li class="slide">Class</li>
@@ -273,7 +273,7 @@
 </section>
 
 <section class="slide">
-    <h2>L - Liskov's Substitution Principle</h2>
+    <h2>L - Liskov's Substitution</h2>
     <h3>Interchangeable</h3>
     <ul>
         <li class="slide">An object's methods can be called in the same way as another of its type
@@ -286,14 +286,14 @@
 </section>
 
 <section class="slide">
-    <h2>L - Liskov's Substitution Principle</h2>
+    <h2>L - Liskov's Substitution</h2>
     <div>Objects of the same type should be interchangeable</div>
     <pre><code>$service-&gt;setCache($memCache);
 $service-&gt;setCache($fileCache);</code></pre>
 </section>
 
 <section class="slide">
-    <h2>L - Liskov's Substitution Principle</h2>
+    <h2>L - Liskov's Substitution</h2>
     <div>Objects of the same type should be interchangeable</div>
     <pre><code>$service-&gt;setRepository($userRepository);
 $service-&gt;setRepository($productRepository);</code></pre>
@@ -305,7 +305,7 @@ $service-&gt;setRepository($productRepository);</code></pre>
 </section>
 
 <section class="slide">
-    <h2>D - Dependency Inversion Principle</h2>
+    <h2>D - Dependency Inversion</h2>
     <blockquote class="slide">
         Applications should depend upon abstractions, not concrete instances of
         an object
@@ -313,7 +313,7 @@ $service-&gt;setRepository($productRepository);</code></pre>
 </section>
 
 <section class="slide">
-    <h2>D - Dependency Inversion Principle</h2>
+    <h2>D - Dependency Inversion</h2>
     <h3>Abstractions</h3>
     <ul>
         <li class="slide">An abstract class</li>
@@ -323,7 +323,7 @@ $service-&gt;setRepository($productRepository);</code></pre>
 </section>
 
 <section class="slide">
-    <h2>D - Dependency Inversion Principle</h2>
+    <h2>D - Dependency Inversion</h2>
     <h3>Inversion</h3>
     <ul>
         <li class="slide">
@@ -346,33 +346,31 @@ $service-&gt;setRepository($productRepository);</code></pre>
 </section>
 
 <section class="slide">
-    <h2>D - Dependency Inversion Principle</h2>
-    <pre><code>class MyLoggingCache implements PSR\CacheInterface {
+    <h2>D - Dependency Inversion</h2>
+    <pre><code>class MyLoggingCache implements PSR\Cache {
     public function __construct(
-        PSR\CacheInterface $realCache
+        PSR\Cache $realCache
     ) {
         $this-&gt;cache = $realCache;
         // UGLY: Depends on a concrete logger
         $this-&gt;logger = new MyFileLogger();
-    }
-}</code></pre>
+    }</code></pre>
 </section>
 
 <section class="slide">
-    <h2>D - Dependency Inversion Principle</h2>
-    <pre><code>class MyLoggingCache implements PSR\CacheInterface {
+    <h2>D - Dependency Inversion</h2>
+    <pre><code>class MyLoggingCache implements PSR\Cache {
     public function __construct(
-        PSR\CacheInterface $realCache, PSR\LoggerInterface $logger
+        PSR\Cache $realCache, PSR\Logger $logger
     ) {
         $this-&gt;cache = $realCache;
         // The logger is injected in
         $this-&gt;logger = $logger;
-    }
-}</code></pre>
+    }</code></pre>
 </section>
 
 <section class="slide">
-    <h2>D - Dependency Inversion Principle</h2>
+    <h2>D - Dependency Inversion</h2>
     <h3>with Single Responsibility Principle</h3>
     <ul>
         <li class="slide">
@@ -393,41 +391,39 @@ $service-&gt;setRepository($productRepository);</code></pre>
 </section>
 
 <section class="slide">
-    <h2>D - Dependency Inversion Principle</h2>
+    <h2>D - Dependency Inversion</h2>
     <h3>Service Locators (SL)</h3>
     <ul>
         <li class="slide">
             We depend on a locator
         </li>
     </ul>
-    <pre class="slide"><code>class MyLoggingCache implements PSR\CacheInterface {
+    <pre class="slide"><code>class MyLoggingCache implements PSR\Cache {
     public function __construct(
         ServiceContainer $cont
     ) {
         $this-&gt;cache  = $cont-&gt;get('cache');
-        $this-&gt;logger = $cont-&gt;get('logger');
-    }</code></pre>
+        $this-&gt;logger = $cont-&gt;get('logger');</code></pre>
 </section>
 
 <section class="slide">
-    <h2>D - Dependency Inversion Principle</h2>
+    <h2>D - Dependency Inversion</h2>
     <h3>Dependency Injection Container (DIC)</h3>
     <ul>
         <li class="slide">
             The container must tell an object everything it may need
         </li>
     </ul>
-    <pre class="slide"><code>class MyLoggingCache implements PSR\CacheInterface {
+    <pre class="slide"><code>class MyLoggingCache implements PSR\Cache {
     public function __construct(
-        PSR\CacheInterface $realCache, PSR\LoggerInterface $logger
+        PSR\Cache $realCache, PSR\Logger $logger
     ) {
         $this-&gt;cache  = $realCache;
-        $this-&gt;logger = $logger;
-    }</code></pre>
+        $this-&gt;logger = $logger;</code></pre>
 </section>
 
 <section class="slide">
-    <h2>D - Dependency Inversion Principle</h2>
+    <h2>D - Dependency Inversion</h2>
     <h3>Service Locators vs DIC</h3>
     <ul>
         <li class="slide">
@@ -447,7 +443,7 @@ $service-&gt;setRepository($productRepository);</code></pre>
 </section>
 
 <section class="slide">
-    <h2>D - Dependency Inversion Principle</h2>
+    <h2>D - Dependency Inversion</h2>
     <h3>SL vs Dependency Injection Containers</h3>
     <ul>
         <li class="slide">
