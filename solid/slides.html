@@ -142,11 +142,10 @@
     <ul>
         <li>Narrow collection of methods to allow performing a responsibility</li>
     </ul>
-    <pre class="slide"><code>interface MyCache {
+    <pre class="slide"><code>interface PSR\CacheInterface {
     public function get($key);
     public function set($key, $value);
-    public function has($key);
-    public function delete($key);
+    public function remove($key);
 }</code></pre>
 </section>
 
@@ -230,15 +229,14 @@
 
 <section class="slide">
     <h2>O - Open / Closed Principle</h2>
-    <pre><code>class MyFileCache implements MyCache {
+    <pre><code>class MyFileCache implements PSR\CacheInterface {
     public function __construct($path) { ... }
     public function garbargeCollection() { ... }
 
-    // and the MyCache methods
+    // and the CacheInterface methods
     public function get($key) { ... }
     public function set($key, $value) { ... }
-    public function has($key) { ... }
-    public function delete($key) { ... }
+    public function remove($key) { ... }
 }</code></pre>
 </section>
 
@@ -339,9 +337,9 @@ $service-&gt;setRepository($productRepository);</code></pre>
 
 <section class="slide">
     <h2>D - Dependency Inversion Principle</h2>
-    <pre><code>class MyLoggingCache implements MyCache {
+    <pre><code>class MyLoggingCache implements PSR\CacheInterface {
     public function __construct(
-        MyCache $realCache
+        PSR\CacheInterface $realCache
     ) {
         $this-&gt;cache = $realCache;
         // UGLY: Depends on a concrete logger
@@ -352,9 +350,9 @@ $service-&gt;setRepository($productRepository);</code></pre>
 
 <section class="slide">
     <h2>D - Dependency Inversion Principle</h2>
-    <pre><code>class MyLoggingCache implements MyCache {
+    <pre><code>class MyLoggingCache implements PSR\CacheInterface {
     public function __construct(
-        MyCache $realCache, MyLogger $logger
+        PSR\CacheInterface $realCache, PSR\LoggerInterface $logger
     ) {
         $this-&gt;cache = $realCache;
         // The logger is injected in
@@ -392,7 +390,7 @@ $service-&gt;setRepository($productRepository);</code></pre>
             We depend on a locator
         </li>
     </ul>
-    <pre class="slide"><code>class MyLoggingCache implements MyCache {
+    <pre class="slide"><code>class MyLoggingCache implements PSR\CacheInterface {
     public function __construct(
         ServiceContainer $cont
     ) {
@@ -409,9 +407,9 @@ $service-&gt;setRepository($productRepository);</code></pre>
             The container must tell an object everything it may need
         </li>
     </ul>
-    <pre class="slide"><code>class MyLoggingCache implements MyCache {
+    <pre class="slide"><code>class MyLoggingCache implements PSR\CacheInterface {
     public function __construct(
-        MyCache $realCache, MyLogger $logger
+        PSR\CacheInterface $realCache, PSR\LoggerInterface $logger
     ) {
         $this-&gt;cache  = $realCache;
         $this-&gt;logger = $logger;
